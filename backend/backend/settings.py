@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'documents',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'documents',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Navya18$$',
         'HOST':'localhost',
         'PORT':'3306',
     }
