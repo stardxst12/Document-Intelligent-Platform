@@ -13,6 +13,8 @@ import os
 from PyPDF2 import PdfReader 
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 
+from .rag import rag_pipeline
+
 #APIView
 class DocumentList(APIView):
     parser_classes = [MultiPartParser, FormParser]
@@ -63,6 +65,29 @@ class DocumentChunkList(APIView):
         serializer = DocumentChunkSerializer(chunk, many=True)
         return Response(serializer.data)
 
+class RAGQueryView(APIView):
+    def post(self, request):
+        document_id = request.data.get("document_id")
+        question = request.data.get("question")
+        top_k = int(request.data.get("top_k", 3))
+
+        if not document_id or not question:
+            return Response({"error": "Missing document_id or question"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            doc = Document.objects.get(id=document_id)
+            file_path = doc.file.path
+        except Document.DoesNotExist:
+            return Response({"error": "Document not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            result = rag_pipeline(file_path, question, top_k)
+            return Response({
+                "answer": result["result"],
+                "sources": [doc.metadata["source"] for doc in result["source_documents"]]
+            })
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #Viewset
 '''
