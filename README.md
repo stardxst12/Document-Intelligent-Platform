@@ -2,7 +2,7 @@
 
 A small full-stack app for **uploading documents**, **keeping a library**, and **asking questions** with **retrieval-augmented generation (RAG)**. The UI (“Lumina Docs”) is a React app; the API is Django REST Framework with a MySQL database. Answers are grounded in the text of a selected PDF using embeddings and a local or OpenAI-compatible chat model.
 
-localhost_3000_.png
+<img width="1281" height="2886" alt="localhost_3000_" src="https://github.com/user-attachments/assets/9d97bd5b-bccd-42f7-b1db-3abf7d746143" />
 
 ## Features
 
