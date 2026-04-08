@@ -4,7 +4,7 @@ from .models import Document, DocumentChunk
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['title', 'file', 'file_type', 'size', 'page_count', 'status', 'created_at']
+        fields = ['id', 'title', 'file', 'file_type', 'size', 'page_count', 'status', 'created_at']
 
 class DocumentChunkSerializer(serializers.ModelSerializer):
     class Meta:

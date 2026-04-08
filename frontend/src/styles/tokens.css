@@ -1,0 +1,31 @@
+/* Lumina Docs — green / blue pastel tokens */
+:root {
+  --color-bg: #e4f5ef;
+  --color-bg-elevated: rgba(255, 255, 255, 0.78);
+  --color-surface: rgba(252, 255, 254, 0.94);
+  --color-border: rgba(46, 120, 108, 0.16);
+  --color-text: #183933;
+  --color-text-muted: #3d6a62;
+  --color-accent: #2d8f7c;
+  --color-accent-soft: #8fd4c4;
+  --color-mint: #4db292;
+  --color-mint-soft: #bce9dc;
+  --color-sea: #4a8fa8;
+  --color-sea-soft: #bfe0ed;
+  --color-blue: #5a9bc4;
+  --color-blue-soft: #c5e2f2;
+  --color-ribbon-top: rgba(232, 248, 243, 0.88);
+  --color-ribbon-scrolled: rgba(22, 82, 74, 0.96);
+  --color-ribbon-border-top: rgba(61, 138, 124, 0.22);
+  --color-ribbon-border-scrolled: rgba(180, 235, 222, 0.22);
+  --color-ribbon-shadow-scrolled: 0 12px 32px rgba(12, 56, 50, 0.18);
+  --shadow-soft: 0 18px 48px rgba(30, 90, 80, 0.08);
+  --shadow-card: 0 8px 28px rgba(40, 100, 90, 0.07);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --max-width: 1120px;
+  --header-height: 72px;
+}

@@ -1,0 +1,108 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header-height);
+  background: var(--color-ribbon-top);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-ribbon-border-top);
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.site-header--scrolled {
+  background: var(--color-ribbon-scrolled);
+  border-bottom-color: var(--color-ribbon-border-scrolled);
+  box-shadow: var(--color-ribbon-shadow-scrolled);
+}
+
+.site-header__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__brand {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.site-header__nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.site-header__nav a:hover {
+  color: var(--color-accent);
+}
+
+.site-header--scrolled .site-header__nav a {
+  color: rgba(220, 248, 240, 0.88);
+}
+
+.site-header--scrolled .site-header__nav a:hover {
+  color: #ffffff;
+}
+
+/* Logo legibility on dark ribbon */
+.site-header--scrolled .brand-logo__name {
+  color: #e8faf6;
+}
+
+.site-header--scrolled .brand-logo__tag {
+  color: #7ee8d0;
+}
+
+.site-header--scrolled .brand-logo__sheet-back {
+  opacity: 0.95;
+}
+
+.site-header--scrolled .brand-logo__sheet-front {
+  fill: #dff8f2;
+  stroke: #4dbea8;
+}
+
+.site-header--scrolled .brand-logo__lines {
+  stroke: #1a6b5c;
+}
+
+.site-header--scrolled .brand-logo__accent {
+  fill: #5ecfff;
+}
+
+.site-header--scrolled .brand-logo__mark {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+
+  .site-header__nav a {
+    transition: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header__nav {
+    gap: 1rem;
+    font-size: 0.82rem;
+  }
+}
