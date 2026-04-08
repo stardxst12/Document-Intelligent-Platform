@@ -17,7 +17,7 @@ function normalizeFileUrl(filePath) {
   return filePath;
 }
 
-const DOCUMENTS_LIST = '/documents/documents/';
+const DOCUMENTS_LIST = '/documents/';
 const RAG = '/documents/rag/';
 
 export function getApiBase() {

@@ -3,11 +3,11 @@ from rest_framework.routers import DefaultRouter
 #from .views import DocumentViewSet, DocumentChunkViewSet
 from .views import DocumentList, DocumentChunkList, RAGQueryView
 
-#APIView
+# Under main urls path('documents/', include(...)) — so list is /documents/, not /documents/documents/
 urlpatterns = [
-    path('documents/', DocumentList.as_view(), name='document-list'),
-    path('documents/<int:doc_id>/chunks/', DocumentChunkList.as_view(), name='document-chunk'),
-    path('rag/', RAGQueryView.as_view(), name='RAG query')
+    path('', DocumentList.as_view(), name='document-list'),
+    path('<int:doc_id>/chunks/', DocumentChunkList.as_view(), name='document-chunk'),
+    path('rag/', RAGQueryView.as_view(), name='RAG query'),
 ]
 
 
