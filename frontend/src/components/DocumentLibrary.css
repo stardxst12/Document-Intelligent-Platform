@@ -56,7 +56,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  max-height: 340px;
+  max-height: min(52vh, 480px);
   overflow-y: auto;
 }
 

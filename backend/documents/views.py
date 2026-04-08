@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, filters
 from .models import Document, DocumentChunk
 from .serializer import DocumentSerializer, DocumentChunkSerializer
@@ -15,7 +17,8 @@ from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUpload
 
 from .rag import rag_pipeline
 
-#APIView
+
+@method_decorator(csrf_exempt, name='dispatch')
 class DocumentList(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
@@ -27,7 +30,14 @@ class DocumentList(APIView):
     def post(self, request, format=None):
         uploaded_file = request.FILES.get('file')
         if not uploaded_file:
-            return Response({'error': 'No files found'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {
+                    'error': 'No file received.',
+                    'hint': 'Send multipart/form-data with a field named exactly "file" (and optional "title"). '
+                    'In Postman: Body → form-data → key "file" type File.',
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         
         #metadata
         file_type = os.path.splitext(uploaded_file.name)[1].lower().strip('.')
@@ -59,12 +69,16 @@ class DocumentList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class DocumentChunkList(APIView):
     def get(self, request, doc_id):
         chunk = DocumentChunk.objects.all().filter(document_id=doc_id)
         serializer = DocumentChunkSerializer(chunk, many=True)
         return Response(serializer.data)
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class RAGQueryView(APIView):
     def post(self, request):
         document_id = request.data.get("document_id")

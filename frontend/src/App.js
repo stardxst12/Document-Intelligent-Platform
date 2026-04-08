@@ -89,37 +89,41 @@ function App() {
       <SiteHeader />
       <main className="app__main">
         <HeroSection />
-        {banner && (
-          <div
-            className={`app__banner ${banner.type === 'err' ? 'app__banner--error' : 'app__banner--ok'}`}
-            role="status"
-          >
-            {banner.text}
-            <button type="button" className="app__banner-dismiss" onClick={() => setBanner(null)} aria-label="Dismiss">
-              ×
-            </button>
+        <div className="app__stack">
+          {banner && (
+            <div
+              className={`app__banner ${banner.type === 'err' ? 'app__banner--error' : 'app__banner--ok'}`}
+              role="status"
+            >
+              {banner.text}
+              <button type="button" className="app__banner-dismiss" onClick={() => setBanner(null)} aria-label="Dismiss">
+                ×
+              </button>
+            </div>
+          )}
+          <div className="app__section">
+            <DocumentUploadPanel onUploaded={handleUploaded} disabled={uploadBusy} />
           </div>
-        )}
-        <div className="app__grid">
-          <DocumentUploadPanel onUploaded={handleUploaded} disabled={uploadBusy} />
-          <DocumentLibrary
-            documents={documents}
-            selectedId={selectedId}
-            onSelect={setSelectedId}
-            loading={listLoading}
-            error={listError}
-            onRefresh={loadDocuments}
-          />
-        </div>
-        <div className="app__full">
-          <AskIntelligencePanel
-            selectedDocument={selectedDocument}
-            onAsk={handleAsk}
-            loading={askLoading}
-            lastAnswer={lastAnswer}
-            lastSources={lastSources}
-            error={askError}
-          />
+          <div className="app__section">
+            <DocumentLibrary
+              documents={documents}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              loading={listLoading}
+              error={listError}
+              onRefresh={loadDocuments}
+            />
+          </div>
+          <div className="app__section">
+            <AskIntelligencePanel
+              selectedDocument={selectedDocument}
+              onAsk={handleAsk}
+              loading={askLoading}
+              lastAnswer={lastAnswer}
+              lastSources={lastSources}
+              error={askError}
+            />
+          </div>
         </div>
       </main>
       <SiteFooter />
