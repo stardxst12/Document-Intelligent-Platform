@@ -11,6 +11,8 @@ A small full-stack app for **uploading documents**, **keeping a library**, and *
 - **Ask (RAG)** — `POST /documents/rag/` with `document_id`, `question`, and optional `top_k` to retrieve similar chunks and generate an answer.
 - **Chunks API** — `GET /documents/<id>/chunks/` for stored chunk metadata (when populated).
 
+  <img width="1282" height="823" alt="image" src="https://github.com/user-attachments/assets/12ff29d5-2a4f-4c5e-b0d6-d09b7085e92c" />
+
 RAG uses **LangChain**, **FAISS**, **Hugging Face** embeddings (`sentence-transformers/all-MiniLM-L6-v2`), and **`PyPDFLoader`** for PDFs. The chat model is configured in `backend/documents/rag.py` (e.g. LM Studio or another OpenAI-compatible server).
 
 ## Project layout
